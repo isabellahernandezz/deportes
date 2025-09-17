@@ -1,62 +1,75 @@
+# 🏟️ Proyecto ETL de Deportes
+
+Este proyecto implementa un **pipeline ETL (Extract, Transform, Load)** sobre un dataset de partidos de fútbol.  
+Fue desarrollado en **Python** utilizando **pandas**, **seaborn** y **matplotlib**, organizado con una arquitectura modular.
+
+---
+
+## 📂 Estructura del proyecto
+
+etl-deportes/
+├── Config/ # Configuración de rutas y parámetros
+│ └── config.py
+├── Extract/ # Módulo de extracción
+│ └── extractor.py
+├── Transform/ # Módulo de transformación
+│ └── transformer.py
+├── Load/ # Módulo de carga
+│ └── loader.py
+├── data/
+│ ├── input/ # Datos originales y limpios
+│ │ ├── deportes.csv
+│ │ └── deportes_limpio.csv
+│ └── output/ # Datos transformados y gráficos
+│ ├── deportes_transformado.csv
+│ ├── grafico_partidos_por_anio.png
+│ ├── grafico_promedio_goles.png
+│ └── grafico_resultados.png
+├── scripts/ # Scripts auxiliares
+│ ├── limpieza.py
+│ ├── transformacion.py
+│ ├── graficos.py
+│ └── verificar_salida.py
+├── main.py # Script principal que ejecuta todo el ETL
+├── requirements.txt # Librerías necesarias
+└── README.md # Documentación del proyecto
+
+
+---
+
 ## ⚙️ Instalación
 
-1️⃣ Clona el repositorio:
-```bash
-git clone https://github.com/isabellahernandezz/deportes.git
-cd deportes/etl-deportes
-2️⃣ Crea un entorno virtual (opcional pero recomendado):
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/isabellahernandezz/deportes.git
+   cd deportes/etl-deportes
 
-bash
-Copiar código
-python3 -m venv venv
-source venv/bin/activate   # En Linux/Mac
-venv\Scripts\activate      # En Windows
-3️⃣ Instala las dependencias:
 
-bash
-Copiar código
+Instalar dependencias:
+
 pip install -r requirements.txt
-📊 Pipeline ETL
-1️⃣ Extracción (Extract)
-El dataset original (deportes.csv) proviene de partidos de la liga inglesa.
 
-Se guarda en data/input/.
+🚀 Ejecución del ETL
 
-2️⃣ Transformación (Transform)
-Se eliminan duplicados y valores nulos.
+Puedes correr cada paso por separado o todo desde main.py.
 
-Se renombran columnas para mayor claridad.
+1️⃣ Limpieza
+python3 scripts/limpieza.py
 
-Se convierten fechas al formato estándar.
 
-Se crean métricas como diferencia de goles.
+Genera data/input/deportes_limpio.csv.
 
-3️⃣ Carga (Load)
-Los datos transformados se guardan en:
+2️⃣ Transformación
+python3 scripts/transformacion.py
 
-data/input/deportes_limpio.csv (datos limpios)
 
-data/output/deportes_transformado.csv (datos finales)
+Genera data/output/deportes_transformado.csv.
 
-📈 Visualizaciones
-El archivo scripts/graficos.py genera gráficas automáticas:
-
-Número de partidos por año 📆
-
-Promedio de goles locales vs visitantes ⚽
-
-Distribución de resultados (Victoria local, Empate, Victoria visitante) 🏆
-
-Ejecutar:
-
-bash
-Copiar código
+3️⃣ Visualización
 python3 scripts/graficos.py
-📂 Las imágenes se guardan en data/output/:
 
-partidos_por_anio.png
 
-promedio_goles.png
+Genera 3 gráficos en data/output/.
 
-resultados.png
-
+4️⃣ Ejecución completa
+python3 main.py
